@@ -9,12 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
-        env:
-          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
         with:
           java-version: 11
       - run: sudo apt-get update && sudo apt-get install google-cloud-sdk
       - run: |
-          echo "$APPLICATION_CREDENTIALS" | base64 --decode > "$HOME"/gcloud.json
+          echo "$GOOGLE_APPLICATION_CREDENTIALS" | base64 --decode > "$HOME"/gcloud.json
           sh -c "gcloud auth activate-service-account --key-file=$HOME/gcloud.json $*"
       - run: mvn clean package appengine:deploy -Dapp.deploy.projectId=home-12
