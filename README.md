@@ -2,7 +2,7 @@
 ## Deploying
 
 ```bash
- mvn clean package appengine:deploy -Dapp.deploy.projectId=home-12
+smvn clean package appengine:deploy -Dapp.deploy.projectId=home-12
 ```
 
 To view your app, use command:
