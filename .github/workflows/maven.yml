@@ -8,9 +8,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+          java-version: 11
       - uses: actions-hub/gcloud@master
         env:
           PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
           APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
         with:
-          args: app deploy app.yaml
+          args: mvn clean package appengine:deploy -Dapp.deploy.projectId=home-12
